@@ -5,5 +5,6 @@ Rails.application.routes.draw do
 
   # Ingredients CRUD
   get "/ingredients" => "ingredients#index"
+  get "/ingredients/:id" => "ingredients#show"
   post "/ingredients" => "ingredients#create"
 end

@@ -18,4 +18,12 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
       assert_response 200
     end
   end
+
+  test "show" do
+    get "/ingredients/#{Ingredient.first.id}.json"
+    assert_response 200
+
+    data = JSON.parse(response.body)
+    assert_equal ["name", "picture", "calories", "fat", "sodium", "carbs", "protein", "sugar", "cholesterol"], data.keys
+  end
 end
