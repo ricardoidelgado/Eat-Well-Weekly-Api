@@ -1,4 +1,3 @@
-json.id ingredient.id
 json.name ingredient.name
 json.picture ingredient.picture
 json.calories ingredient.calories

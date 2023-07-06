@@ -11,4 +11,11 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
     data = JSON.parse(response.body)
     assert_equal Ingredient.count, data.length
   end
+
+  test "create" do
+    assert_difference "Ingredient.count", 1 do
+      post "/ingredients.json", params: { name: "bread", picture: "bread.png", calories: 50, fat: 50, sodium: 50, carbs: 50, protein: 50, sugar: 50, cholesterol: 50 }
+      assert_response 200
+    end
+  end
 end
