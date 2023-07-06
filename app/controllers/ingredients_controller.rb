@@ -23,4 +23,20 @@ class IngredientsController < ApplicationController
     )
     render :show
   end
+
+  def update
+    @ingredient = Ingredient.find_by(id: params[:id])
+    @ingredient.update(
+      name: params[:name] || @ingredient.name,
+      picture: params[:picture] || @ingredient.picture,
+      calories: params[:calories] || @ingredient.calories,
+      fat: params[:fat] || @ingredient.fat,
+      sodium: params[:sodium] || @ingredient.sodium,
+      carbs: params[:carbs] || @ingredient.carbs,
+      protein: params[:protein] || @ingredient.protein,
+      sugar: params[:sugar] || @ingredient.sugar,
+      cholesterol: params[:cholesterol] || @ingredient.cholesterol,
+    )
+    render :show
+  end
 end
