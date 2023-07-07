@@ -8,3 +8,4 @@ json.carbs ingredient.carbs
 json.protein ingredient.protein
 json.sugar ingredient.sugar
 json.cholesterol ingredient.cholesterol
+json.user_id ingredient.user_id

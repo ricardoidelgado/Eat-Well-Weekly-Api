@@ -20,6 +20,7 @@ class IngredientsController < ApplicationController
       protein: params[:protein],
       sugar: params[:sugar],
       cholesterol: params[:cholesterol],
+      user_id: current_user.id,
     )
     render :show
   end
