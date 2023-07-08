@@ -1,9 +1,6 @@
 require "test_helper"
 
 class IngredientsControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
   setup do
     @user = User.create(first_name: "Test", last_name: "Testerson", profile_picture: "image.jpeg", email: "test@test.com", password: "password")
     post "/sessions.json", params: { email: "test@test.com", password: "password" }
