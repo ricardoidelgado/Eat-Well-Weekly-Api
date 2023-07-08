@@ -9,3 +9,7 @@ Ingredient.create!([
 Meal.create!([
   { name: "Chicken Parmesan Sandwich", picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm0WB1Z-g8K7rZYXXqpQcQO30GGQyUaW34-w&usqp=CAU", user_id: 1 },
 ])
+
+MealIngredient.create!([
+  { meal_id: 1, ingredient_id: 2, ingredient_quantity: 1 },
+])

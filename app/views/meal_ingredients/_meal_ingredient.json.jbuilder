@@ -1,0 +1,4 @@
+json.id meal_ingredient.id
+json.meal_id meal_ingredient.meal_id
+json.ingredient_id meal_ingredient.ingredient_id
+json.ingredient_quantity meal_ingredient.ingredient_quantity
