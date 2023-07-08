@@ -28,14 +28,12 @@ class IngredientsController < ApplicationController
     if @ingredient.valid?
       render :show
     else
-      render json: {errors: @ingredients.errors.full_messages}, status: unprocessable_entity
-    end 
-
-    
+      render json: { errors: @ingredients.errors.full_messages }, status: unprocessable_entity
+    end
   end
 
   def update
-    @ingredient = Ingredient.find_by(id: params[:id])
+    @ingredient = current_user.ingredients.find_by(id: params[:id])
     @ingredient.update(
       name: params[:name] || @ingredient.name,
       picture: params[:picture] || @ingredient.picture,
@@ -47,15 +45,16 @@ class IngredientsController < ApplicationController
       sugar: params[:sugar] || @ingredient.sugar,
       cholesterol: params[:cholesterol] || @ingredient.cholesterol,
     )
+
     if @ingredient.valid?
       render :show
     else
-      render json: {errors: @ingredients.errors.full_messages}, status: unprocessable_entity
-    end 
+      render json: { errors: @ingredients.errors.full_messages }, status: unprocessable_entity
+    end
   end
 
   def destroy
-    @ingredient = Ingredient.find_by(id: params[:id])
+    @ingredient = current_user.ingredients.find_by(id: params[:id])
     @ingredient.destroy
     render json: { message: "Ingredient destroyed successfully" }
   end
