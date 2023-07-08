@@ -33,7 +33,7 @@ class IngredientsController < ApplicationController
   end
 
   def update
-    @ingredient = current_user.ingredients.find_by(id: params[:id])
+    @ingredient = Ingredient.find_by(id: params[:id])
     @ingredient.update(
       name: params[:name] || @ingredient.name,
       picture: params[:picture] || @ingredient.picture,
@@ -46,16 +46,20 @@ class IngredientsController < ApplicationController
       cholesterol: params[:cholesterol] || @ingredient.cholesterol,
     )
 
-    if @ingredient.valid?
+    if @ingredient.valid? && @ingredient.user_id == current_user.id
       render :show
     else
-      render json: { errors: @ingredients.errors.full_messages }, status: unprocessable_entity
+      render json: { errors: @ingredient.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @ingredient = current_user.ingredients.find_by(id: params[:id])
-    @ingredient.destroy
-    render json: { message: "Ingredient destroyed successfully" }
+    @ingredient = Ingredient.find_by(id: params[:id])
+    if @ingredient.user_id == current_user.id
+      @ingredient.destroy
+      render json: { message: "Ingredient destroyed successfully" }
+    else
+      render json: { errors: "Only the user that created this ingredient can delete this ingredient" }, status: :unprocessable_entity
+    end
   end
 end
