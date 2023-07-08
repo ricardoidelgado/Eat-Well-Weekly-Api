@@ -1,4 +1,6 @@
 class IngredientsController < ApplicationController
+  before_action :authenticate_user, except: [:index, :show]
+
   def index
     @ingredients = Ingredient.all
     render :index
@@ -22,7 +24,14 @@ class IngredientsController < ApplicationController
       cholesterol: params[:cholesterol],
       user_id: current_user.id,
     )
-    render :show
+
+    if @ingredient.valid?
+      render :show
+    else
+      render json: {errors: @ingredients.errors.full_messages}, status: unprocessable_entity
+    end 
+
+    
   end
 
   def update
@@ -38,7 +47,11 @@ class IngredientsController < ApplicationController
       sugar: params[:sugar] || @ingredient.sugar,
       cholesterol: params[:cholesterol] || @ingredient.cholesterol,
     )
-    render :show
+    if @ingredient.valid?
+      render :show
+    else
+      render json: {errors: @ingredients.errors.full_messages}, status: unprocessable_entity
+    end 
   end
 
   def destroy
