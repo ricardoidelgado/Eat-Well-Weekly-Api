@@ -28,7 +28,7 @@ class IngredientsController < ApplicationController
     if @ingredient.valid?
       render :show
     else
-      render json: { errors: @ingredients.errors.full_messages }, status: unprocessable_entity
+      render json: { errors: @ingredient.errors.full_messages }, status: :unprocessable_entity
     end
   end
 

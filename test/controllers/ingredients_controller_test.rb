@@ -6,6 +6,7 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
     post "/sessions.json", params: { email: "test@test.com", password: "password" }
     data = JSON.parse(response.body)
     @jwt = data["jwt"]
+    @ingredient = Ingredient.create({ name: "bread!", picture: "bread.png", calories: 50, fat: 50, sodium: 50, carbs: 50, protein: 50, sugar: 50, cholesterol: 50, user_id: @user.id })
   end
 
   test "index" do
@@ -31,12 +32,11 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
     assert_response 200
 
     data = JSON.parse(response.body)
-    assert_equal ["id", "name", "picture", "calories", "fat", "sodium", "carbs", "protein", "sugar", "cholesterol", "user_id"], data.keys
+    assert_equal ["id", "name", "picture", "calories", "fat", "sodium", "carbs", "protein", "sugar", "cholesterol", "user_id", "meals"], data.keys
   end
 
   test "update" do
-    ingredient = Ingredient.first
-    patch "/ingredients/#{ingredient.id}.json", params: { name: "Updated name" }, headers: { "Authorization" => "Bearer #{@jwt}" }
+    patch "/ingredients/#{@ingredient.id}.json", params: { name: "Updated name" }, headers: { "Authorization" => "Bearer #{@jwt}" }
     assert_response 200
 
     data = JSON.parse(response.body)
@@ -45,7 +45,7 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
 
   test "destroy" do
     assert_difference "Ingredient.count", -1 do
-      delete "/ingredients/#{Ingredient.first.id}.json", headers: { "Authorization" => "Bearer #{@jwt}" }
+      delete "/ingredients/#{@ingredient.id}.json", headers: { "Authorization" => "Bearer #{@jwt}" }
       assert_response 200
     end
   end
