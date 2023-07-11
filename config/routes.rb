@@ -23,4 +23,11 @@ Rails.application.routes.draw do
   post "/meal_ingredients" => "meal_ingredients#create"
   patch "/meal_ingredients/:id" => "meal_ingredients#update"
   delete "/meal_ingredients/:id" => "meal_ingredients#destroy"
+
+  #DailyMealPlans
+  get "/daily_meal_plans" => "daily_meal_plans#index"
+  get "/daily_meal_plans/:id" => "daily_meal_plans#show"
+  post "/daily_meal_plans" => "daily_meal_plans#create"
+  patch "/daily_meal_plans/:id" => "daily_meal_plans#update"
+  delete "/daily_meal_plans/:id" => "daily_meal_plans#destroy"
 end
