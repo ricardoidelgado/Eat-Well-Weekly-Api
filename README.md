@@ -1,24 +1,23 @@
-# README
+# Meal-Planner-App (Back-End)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A web application for creating and organzing weekly meal plans with nutritional summary and grocery list outputs. 
 
-Things you may want to cover:
+The front-end for this application can be found here: https://github.com/ricardoidelgado/meal-planner-frontend
 
-* Ruby version
+## Background
 
-* System dependencies
+I wanted to find a way to plan out my meals for the week and receive a grocery list with all ingredients for each meal. As I thought through the idea, I saw the value in adding the nutrional information for each ingredient which would allow you to have a nutritional summary on a daily and weekly basis.
 
-* Configuration
+## Installation
 
-* Database creation
+Ensure you have Node.js and Ruby installed. You can find official installation documents here:
 
-* Database initialization
+Node.js - https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+<br>
+Ruby - https://www.ruby-lang.org/en/documentation/installation/
 
-* How to run the test suite
+## Contact
 
-* Services (job queues, cache servers, search engines, etc.)
+Ricardo Delgado - rickydel19@gmail.com
 
-* Deployment instructions
-
-* ...
+[LinkedIn](https://www.linkedin.com/in/ricardodelgado1/)
