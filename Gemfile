@@ -74,3 +74,4 @@ end
 
 gem "rack-cors"
 gem "seed_dump"
+gem "twilio-ruby", "~> 6.2.0"

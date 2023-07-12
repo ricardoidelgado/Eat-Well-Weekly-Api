@@ -30,4 +30,7 @@ Rails.application.routes.draw do
   post "/daily_meal_plans" => "daily_meal_plans#create"
   patch "/daily_meal_plans/:id" => "daily_meal_plans#update"
   delete "/daily_meal_plans/:id" => "daily_meal_plans#destroy"
+
+  # Twilio
+  get "/twilio_daily_meal_plans/:id" => "daily_meal_plans#text"
 end

@@ -7,3 +7,5 @@ json.lunch daily_meal_plan.lunch
 json.lunch_meal daily_meal_plan.lunch_meal
 json.dinner daily_meal_plan.dinner
 json.dinner_meal daily_meal_plan.dinner_meal
+json.grocery_list daily_meal_plan.grocery_list
+json.nutritional_summary daily_meal_plan.nutritional_summary
