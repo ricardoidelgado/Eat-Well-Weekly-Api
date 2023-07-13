@@ -15,3 +15,5 @@ json.friday weekly_meal_plan.friday
 json.friday_plan weekly_meal_plan.friday_plan
 json.saturday weekly_meal_plan.saturday
 json.saturday_plan weekly_meal_plan.saturday_plan
+json.grocery_list weekly_meal_plan.grocery_list
+json.nutritional_summary weekly_meal_plan.nutritional_summary
