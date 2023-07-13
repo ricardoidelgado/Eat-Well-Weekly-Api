@@ -1,5 +1,5 @@
 class DailyMealPlansController < ApplicationController
-  before_action :authenticate_user
+  # before_action :authenticate_user
 
   def index
     @daily_meal_plans = DailyMealPlan.all
@@ -57,5 +57,30 @@ class DailyMealPlansController < ApplicationController
     )
 
     puts message.sid
+  end
+
+  def email
+    @daily_meal_plan = DailyMealPlan.find_by(id: params[:id])
+    grocery_list_summary = @daily_meal_plan.grocery_list
+    output_message = ""
+    grocery_list_summary.each do |key, value|
+      output_message += "\n" + "#{key}: #{value}"
+    end
+    Pony.mail({
+      :to => ENV["PERSONAL_EMAIL"],
+      :from => ENV["PROJECT_EMAIL"],
+      :subject => "Meal Planner - Grocery List",
+      :body => output_message,
+      :via => :smtp,
+      :via_options => {
+        :address => "smtp.gmail.com",
+        :port => "587",
+        :enable_starttls_auto => true,
+        :user_name => ENV["PROJECT_EMAIL"],
+        :password => ENV["PROJECT_EMAIL_PASSWORD"],
+        :authentication => :plain, # :plain, :login, :cram_md5, no auth by default
+        :domain => "localhost.localdomain", # the HELO domain provided by the client to the server
+      },
+    })
   end
 end

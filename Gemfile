@@ -72,6 +72,12 @@ group :test do
   gem "webdrivers"
 end
 
+# For linking to Front-End
 gem "rack-cors"
+
+# To save data in database into Seeds File
 gem "seed_dump"
+
+# For text/email functionality
 gem "twilio-ruby", "~> 6.2.0"
+gem 'pony', '~> 1.11'
