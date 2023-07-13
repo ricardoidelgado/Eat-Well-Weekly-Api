@@ -4,4 +4,5 @@ class User < ApplicationRecord
   has_many :ingredients
   has_many :meals
   has_many :daily_meal_plans
+  has_many :weekly_meal_plans
 end

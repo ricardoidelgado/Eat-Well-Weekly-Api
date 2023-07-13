@@ -1,0 +1,9 @@
+json.id weekly_meal_plan.id
+json.user_id weekly_meal_plan.user_id
+json.sunday weekly_meal_plan.sunday
+json.monday weekly_meal_plan.monday
+json.tuesday weekly_meal_plan.tuesday
+json.wednesday weekly_meal_plan.wednesday
+json.thursday weekly_meal_plan.thursday
+json.friday weekly_meal_plan.friday
+json.saturday weekly_meal_plan.saturday

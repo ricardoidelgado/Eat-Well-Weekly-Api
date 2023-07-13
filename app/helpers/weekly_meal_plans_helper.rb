@@ -1,0 +1,2 @@
+module WeeklyMealPlansHelper
+end
