@@ -1,0 +1,2 @@
+class WeeklyMealPlan < ApplicationRecord
+end
