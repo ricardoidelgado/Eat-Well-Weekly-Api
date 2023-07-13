@@ -40,6 +40,9 @@ Rails.application.routes.draw do
 
   # Twilio
   # get "/twilio_daily_meal_plans/:id" => "daily_meal_plans#text"
+  # get "/twilio_weekly_meal_plans/:id" => "weekly_meal_plans#text"
+
   # Email
   get "/email_daily_meal_plans/:id" => "daily_meal_plans#email"
+  get "/email_weekly_meal_plans/:id" => "weekly_meal_plans#email"
 end

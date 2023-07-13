@@ -45,4 +45,49 @@ class WeeklyMealPlansController < ApplicationController
     @weekly_meal_plan.destroy
     render json: { message: "Weekly Meal Plan destroyed successfully" }
   end
+
+  # def text
+  #   account_sid = ENV["TWILIO_ACCOUNT_SID"]
+  #   auth_token = ENV["TWILIO_AUTH_TOKEN"]
+  #   @weekly_meal_plan = WeeklyMealPlan.find_by(id: params[:id])
+  #   grocery_list_summary = @weekly_meal_plan.grocery_list
+  #   output_message = ""
+  #   grocery_list_summary.each do |key, value|
+  #     output_message += "\n" + "#{key}: #{value}"
+  #   end
+
+  #   @client = Twilio::REST::Client.new account_sid, auth_token
+  #   message = @client.messages.create(
+  #     body: output_message,
+  #     to: ENV["PERSONAL_PHONE_NUMBER"],  # Text this number
+  #     from: ENV["TWILIO_PHONE_NUMBER"], # From a valid Twilio number
+  #   )
+
+  #   puts message.sid
+  # end
+
+  def email
+    @weekly_meal_plan = WeeklyMealPlan.find_by(id: params[:id])
+    grocery_list_summary = @weekly_meal_plan.grocery_list
+    output_message = ""
+    grocery_list_summary.each do |key, value|
+      output_message += "\n" + "#{key}: #{value}"
+    end
+    Pony.mail({
+      :to => ENV["PERSONAL_EMAIL"],
+      :from => ENV["PROJECT_EMAIL"],
+      :subject => "Meal Planner - Grocery List",
+      :body => output_message,
+      :via => :smtp,
+      :via_options => {
+        :address => "smtp.gmail.com",
+        :port => "587",
+        :enable_starttls_auto => true,
+        :user_name => ENV["PROJECT_EMAIL"],
+        :password => ENV["PROJECT_EMAIL_PASSWORD"],
+        :authentication => :plain, # :plain, :login, :cram_md5, no auth by default
+        :domain => "localhost.localdomain", # the HELO domain provided by the client to the server
+      },
+    })
+  end
 end
