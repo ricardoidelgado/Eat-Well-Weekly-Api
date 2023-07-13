@@ -1,4 +1,5 @@
 json.id weekly_meal_plan.id
+json.name weekly_meal_plan.name
 json.user_id weekly_meal_plan.user_id
 json.sunday weekly_meal_plan.sunday
 json.monday weekly_meal_plan.monday
