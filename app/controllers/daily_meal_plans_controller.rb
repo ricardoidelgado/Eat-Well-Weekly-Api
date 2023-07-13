@@ -1,5 +1,5 @@
 class DailyMealPlansController < ApplicationController
-  # before_action :authenticate_user
+  before_action :authenticate_user
 
   def index
     @daily_meal_plans = DailyMealPlan.all
@@ -39,25 +39,25 @@ class DailyMealPlansController < ApplicationController
     render json: { message: "Daily Meal Plan destroyed successfully" }
   end
 
-  def text
-    account_sid = ENV["TWILIO_ACCOUNT_SID"]
-    auth_token = ENV["TWILIO_AUTH_TOKEN"]
-    @daily_meal_plan = DailyMealPlan.find_by(id: params[:id])
-    grocery_list_summary = @daily_meal_plan.grocery_list
-    output_message = ""
-    grocery_list_summary.each do |key, value|
-      output_message += "\n" + "#{key}: #{value}"
-    end
+  # def text
+  #   account_sid = ENV["TWILIO_ACCOUNT_SID"]
+  #   auth_token = ENV["TWILIO_AUTH_TOKEN"]
+  #   @daily_meal_plan = DailyMealPlan.find_by(id: params[:id])
+  #   grocery_list_summary = @daily_meal_plan.grocery_list
+  #   output_message = ""
+  #   grocery_list_summary.each do |key, value|
+  #     output_message += "\n" + "#{key}: #{value}"
+  #   end
 
-    @client = Twilio::REST::Client.new account_sid, auth_token
-    message = @client.messages.create(
-      body: output_message,
-      to: ENV["PERSONAL_PHONE_NUMBER"],  # Text this number
-      from: ENV["TWILIO_PHONE_NUMBER"], # From a valid Twilio number
-    )
+  #   @client = Twilio::REST::Client.new account_sid, auth_token
+  #   message = @client.messages.create(
+  #     body: output_message,
+  #     to: ENV["PERSONAL_PHONE_NUMBER"],  # Text this number
+  #     from: ENV["TWILIO_PHONE_NUMBER"], # From a valid Twilio number
+  #   )
 
-    puts message.sid
-  end
+  #   puts message.sid
+  # end
 
   def email
     @daily_meal_plan = DailyMealPlan.find_by(id: params[:id])

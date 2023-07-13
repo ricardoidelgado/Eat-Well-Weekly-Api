@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   delete "/daily_meal_plans/:id" => "daily_meal_plans#destroy"
 
   # Twilio
-  get "/twilio_daily_meal_plans/:id" => "daily_meal_plans#text"
+  # get "/twilio_daily_meal_plans/:id" => "daily_meal_plans#text"
   # Email
   get "/email_daily_meal_plans/:id" => "daily_meal_plans#email"
 end
