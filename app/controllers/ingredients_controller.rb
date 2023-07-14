@@ -57,7 +57,10 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.find_by(id: params[:id])
     if @ingredient.user_id == current_user.id
       @ingredient.destroy
-      render json: { message: "Ingredient destroyed successfully" }
+      @ingredient.get_meal_ingredients.each do |meal_ingredient|
+        meal_ingredient.destroy
+      end
+      render json: { message: "Ingredient destroyed successfully and all meal ingredient relationships destroyed successfully" }
     else
       render json: { errors: "Only the user that created this ingredient can delete this ingredient" }, status: :unprocessable_entity
     end
