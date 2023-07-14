@@ -62,12 +62,12 @@ class DailyMealPlansController < ApplicationController
   def email
     @daily_meal_plan = DailyMealPlan.find_by(id: params[:id])
     grocery_list_summary = @daily_meal_plan.grocery_list
-    output_message = ""
+    output_message = "#{@daily_meal_plan.name} Grocery List:"
     grocery_list_summary.each do |key, value|
       output_message += "\n" + "#{key}: #{value}"
     end
     Pony.mail({
-      :to => ENV["PERSONAL_EMAIL"],
+      :to => current_user.email,
       :from => ENV["PROJECT_EMAIL"],
       :subject => "Meal Planner - Grocery List",
       :body => output_message,
