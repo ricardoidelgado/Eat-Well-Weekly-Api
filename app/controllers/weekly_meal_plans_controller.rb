@@ -1,5 +1,5 @@
 class WeeklyMealPlansController < ApplicationController
-  # before_action :authenticate_user
+  before_action :authenticate_user
 
   def index
     @weekly_meal_plans = WeeklyMealPlan.all

@@ -32,6 +32,9 @@ class MealsController < ApplicationController
   def destroy
     @meal = Meal.find_by(id: params[:id])
     @meal.destroy
+    @meal.get_meal_ingredients.each do |meal_ingredient|
+      meal_ingredient.destroy
+    end
     render json: { message: "Meal destroyed successfully" }
   end
 end
