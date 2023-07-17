@@ -32,7 +32,7 @@ class WeeklyMealPlan < ApplicationRecord
   def grocery_list
     meal_plans = []
     meals = []
-    output_hash = {}
+    hash = {}
     meal_plans << DailyMealPlan.find_by(id: sunday)
     meal_plans << DailyMealPlan.find_by(id: monday)
     meal_plans << DailyMealPlan.find_by(id: tuesday)
@@ -48,13 +48,17 @@ class WeeklyMealPlan < ApplicationRecord
     meals.each do |meal|
       MealIngredient.where(meal_id: meal).each do |meal_ingredient|
         ingredient = Ingredient.find_by(id: meal_ingredient.ingredient_id)
-        if !output_hash[ingredient.name]
-          output_hash[ingredient.name] = 0
+        if !hash[ingredient.name]
+          hash[ingredient.name] = 0
         end
-        output_hash[ingredient.name] += meal_ingredient.ingredient_quantity
+        hash[ingredient.name] += meal_ingredient.ingredient_quantity
       end
     end
-    return output_hash
+    output = []
+    hash.each do |item, quantity|
+      output << { item: item, quantity: quantity }
+    end
+    return output
   end
 
   def nutritional_summary

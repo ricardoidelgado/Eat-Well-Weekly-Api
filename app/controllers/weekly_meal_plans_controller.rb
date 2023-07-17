@@ -52,8 +52,8 @@ class WeeklyMealPlansController < ApplicationController
   #   @weekly_meal_plan = WeeklyMealPlan.find_by(id: params[:id])
   #   grocery_list_summary = @weekly_meal_plan.grocery_list
   #   output_message = ""
-  #   grocery_list_summary.each do |key, value|
-  #     output_message += "\n" + "#{key}: #{value}"
+  #   grocery_list_summary.each do |hash|
+  #     output_message += "\n" + "#{hash[:item]}: #{hash[:quantity]}"
   #   end
 
   #   @client = Twilio::REST::Client.new account_sid, auth_token
@@ -70,8 +70,8 @@ class WeeklyMealPlansController < ApplicationController
     @weekly_meal_plan = WeeklyMealPlan.find_by(id: params[:id])
     grocery_list_summary = @weekly_meal_plan.grocery_list
     output_message = "#{@weekly_meal_plan.name} Grocery List:"
-    grocery_list_summary.each do |key, value|
-      output_message += "\n" + "#{key}: #{value}"
+    grocery_list_summary.each do |hash|
+      output_message += "\n" + "#{hash[:item]}: #{hash[:quantity]}"
     end
     Pony.mail({
       :to => current_user.email,

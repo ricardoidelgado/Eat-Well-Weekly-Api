@@ -1,5 +1,5 @@
 class DailyMealPlansController < ApplicationController
-  before_action :authenticate_user
+  # before_action :authenticate_user
 
   def index
     @daily_meal_plans = DailyMealPlan.all
@@ -45,8 +45,8 @@ class DailyMealPlansController < ApplicationController
   #   @daily_meal_plan = DailyMealPlan.find_by(id: params[:id])
   #   grocery_list_summary = @daily_meal_plan.grocery_list
   #   output_message = ""
-  #   grocery_list_summary.each do |key, value|
-  #     output_message += "\n" + "#{key}: #{value}"
+  #   grocery_list_summary.each do |hash|
+  #     output_message += "\n" + "#{hash[:item]}: #{hash[:quantity]}"
   #   end
 
   #   @client = Twilio::REST::Client.new account_sid, auth_token
@@ -63,8 +63,8 @@ class DailyMealPlansController < ApplicationController
     @daily_meal_plan = DailyMealPlan.find_by(id: params[:id])
     grocery_list_summary = @daily_meal_plan.grocery_list
     output_message = "#{@daily_meal_plan.name} Grocery List:"
-    grocery_list_summary.each do |key, value|
-      output_message += "\n" + "#{key}: #{value}"
+    grocery_list_summary.each do |hash|
+      output_message += "\n" + "#{hash[:item]}: #{hash[:quantity]}"
     end
     Pony.mail({
       :to => current_user.email,
