@@ -13,37 +13,34 @@ class DailyMealPlan < ApplicationRecord
     Meal.find_by(id: dinner)
   end
 
-  def grocery_list
-    hash = {}
+  def meals
     daily_meals = []
-    daily_meals << Meal.find_by(id: breakfast)
-    daily_meals << Meal.find_by(id: lunch)
-    daily_meals << Meal.find_by(id: dinner)
-    daily_meals.each do |meal|
+    daily_meals << breakfast_meal
+    daily_meals << lunch_meal
+    daily_meals << dinner_meal
+  end
+
+  def grocery_list
+    ingredients_hash = {}
+    output = []
+    meals.each do |meal|
       MealIngredient.where(meal_id: meal.id).each do |meal_ingredient|
         ingredient = Ingredient.find_by(id: meal_ingredient.ingredient_id)
-        if !hash[ingredient.name]
-          hash[ingredient.name] = 0
+        if !ingredients_hash[ingredient.name]
+          ingredients_hash[ingredient.name] = 0
         end
-        hash[ingredient.name] += meal_ingredient.ingredient_quantity
+        ingredients_hash[ingredient.name] += meal_ingredient.ingredient_quantity
       end
     end
-    output = []
-    hash.each do |item, quantity|
+    ingredients_hash.each do |item, quantity|
       output << { item: item, quantity: quantity }
     end
     return output
   end
 
-  # Current output is a hash {bread: 5}, want an array [{item: "Bread"}, {quantity: 5}]
-
   def nutritional_summary
     output_hash = { calories: 0, fat: 0, sodium: 0, carbs: 0, protein: 0, sugar: 0, cholesterol: 0 }
-    daily_meals = []
-    daily_meals << Meal.find_by(id: breakfast)
-    daily_meals << Meal.find_by(id: lunch)
-    daily_meals << Meal.find_by(id: dinner)
-    daily_meals.each do |meal|
+    meals.each do |meal|
       MealIngredient.where(meal_id: meal.id).each do |meal_ingredient|
         ingredient = Ingredient.find_by(id: meal_ingredient.ingredient_id)
         ingredient_quantity = meal_ingredient.ingredient_quantity

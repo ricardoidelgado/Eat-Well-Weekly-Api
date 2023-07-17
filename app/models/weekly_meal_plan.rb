@@ -29,54 +29,44 @@ class WeeklyMealPlan < ApplicationRecord
     DailyMealPlan.find_by(id: saturday)
   end
 
-  def grocery_list
+  def meals
     meal_plans = []
     meals = []
-    hash = {}
-    meal_plans << DailyMealPlan.find_by(id: sunday)
-    meal_plans << DailyMealPlan.find_by(id: monday)
-    meal_plans << DailyMealPlan.find_by(id: tuesday)
-    meal_plans << DailyMealPlan.find_by(id: wednesday)
-    meal_plans << DailyMealPlan.find_by(id: thursday)
-    meal_plans << DailyMealPlan.find_by(id: friday)
-    meal_plans << DailyMealPlan.find_by(id: saturday)
+    meal_plans << sunday_plan
+    meal_plans << monday_plan
+    meal_plans << tuesday_plan
+    meal_plans << wednesday_plan
+    meal_plans << thursday_plan
+    meal_plans << friday_plan
+    meal_plans << saturday_plan
     meal_plans.each do |daily_meal_plan|
       meals << daily_meal_plan.breakfast
       meals << daily_meal_plan.lunch
       meals << daily_meal_plan.dinner
     end
+    return meals
+  end
+
+  def grocery_list
+    ingredients_hash = {}
+    output = []
     meals.each do |meal|
       MealIngredient.where(meal_id: meal).each do |meal_ingredient|
         ingredient = Ingredient.find_by(id: meal_ingredient.ingredient_id)
-        if !hash[ingredient.name]
-          hash[ingredient.name] = 0
+        if !ingredients_hash[ingredient.name]
+          ingredients_hash[ingredient.name] = 0
         end
-        hash[ingredient.name] += meal_ingredient.ingredient_quantity
+        ingredients_hash[ingredient.name] += meal_ingredient.ingredient_quantity
       end
     end
-    output = []
-    hash.each do |item, quantity|
+    ingredients_hash.each do |item, quantity|
       output << { item: item, quantity: quantity }
     end
     return output
   end
 
   def nutritional_summary
-    meal_plans = []
-    meals = []
     output_hash = { calories: 0, fat: 0, sodium: 0, carbs: 0, protein: 0, sugar: 0, cholesterol: 0 }
-    meal_plans << DailyMealPlan.find_by(id: sunday)
-    meal_plans << DailyMealPlan.find_by(id: monday)
-    meal_plans << DailyMealPlan.find_by(id: tuesday)
-    meal_plans << DailyMealPlan.find_by(id: wednesday)
-    meal_plans << DailyMealPlan.find_by(id: thursday)
-    meal_plans << DailyMealPlan.find_by(id: friday)
-    meal_plans << DailyMealPlan.find_by(id: saturday)
-    meal_plans.each do |daily_meal_plan|
-      meals << daily_meal_plan.breakfast
-      meals << daily_meal_plan.lunch
-      meals << daily_meal_plan.dinner
-    end
     meals.each do |meal|
       MealIngredient.where(meal_id: meal).each do |meal_ingredient|
         ingredient = Ingredient.find_by(id: meal_ingredient.ingredient_id)
