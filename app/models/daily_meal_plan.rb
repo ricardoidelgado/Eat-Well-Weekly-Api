@@ -5,12 +5,24 @@ class DailyMealPlan < ApplicationRecord
     Meal.find_by(id: breakfast)
   end
 
+  def breakfast_nutrition
+    breakfast_meal.nutritional_summary
+  end
+
   def lunch_meal
     Meal.find_by(id: lunch)
   end
 
+  def lunch_nutrition
+    lunch_meal.nutritional_summary
+  end
+
   def dinner_meal
     Meal.find_by(id: dinner)
+  end
+
+  def dinner_nutrition
+    dinner_meal.nutritional_summary
   end
 
   def meals
