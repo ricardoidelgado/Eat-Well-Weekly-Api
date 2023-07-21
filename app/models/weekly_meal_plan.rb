@@ -5,28 +5,112 @@ class WeeklyMealPlan < ApplicationRecord
     DailyMealPlan.find_by(id: sunday)
   end
 
+  def sunday_meals
+    sunday_meals = {}
+    sunday_meals[:breakfast] = Meal.find_by(id: sunday_plan.breakfast)
+    sunday_meals[:lunch] = Meal.find_by(id: sunday_plan.lunch)
+    sunday_meals[:dinner] = Meal.find_by(id: sunday_plan.dinner)
+    return sunday_meals
+  end
+
+  def sunday_nutrition
+    sunday_plan.nutritional_summary
+  end
+
   def monday_plan
     DailyMealPlan.find_by(id: monday)
+  end
+
+  def monday_meals
+    monday_meals = {}
+    monday_meals[:breakfast] = Meal.find_by(id: monday_plan.breakfast)
+    monday_meals[:lunch] = Meal.find_by(id: monday_plan.lunch)
+    monday_meals[:dinner] = Meal.find_by(id: monday_plan.dinner)
+    return monday_meals
+  end
+
+  def monday_nutrition
+    monday_plan.nutritional_summary
   end
 
   def tuesday_plan
     DailyMealPlan.find_by(id: tuesday)
   end
 
+  def tuesday_meals
+    tuesday_meals = {}
+    tuesday_meals[:breakfast] = Meal.find_by(id: tuesday_plan.breakfast)
+    tuesday_meals[:lunch] = Meal.find_by(id: tuesday_plan.lunch)
+    tuesday_meals[:dinner] = Meal.find_by(id: tuesday_plan.dinner)
+    return tuesday_meals
+  end
+
+  def tuesday_nutrition
+    tuesday_plan.nutritional_summary
+  end
+
   def wednesday_plan
     DailyMealPlan.find_by(id: wednesday)
+  end
+
+  def wednesday_meals
+    wednesday_meals = {}
+    wednesday_meals[:breakfast] = Meal.find_by(id: wednesday_plan.breakfast)
+    wednesday_meals[:lunch] = Meal.find_by(id: wednesday_plan.lunch)
+    wednesday_meals[:dinner] = Meal.find_by(id: wednesday_plan.dinner)
+    return wednesday_meals
+  end
+
+  def wednesday_nutrition
+    wednesday_plan.nutritional_summary
   end
 
   def thursday_plan
     DailyMealPlan.find_by(id: thursday)
   end
 
+  def thursday_meals
+    thursday_meals = {}
+    thursday_meals[:breakfast] = Meal.find_by(id: thursday_plan.breakfast)
+    thursday_meals[:lunch] = Meal.find_by(id: thursday_plan.lunch)
+    thursday_meals[:dinner] = Meal.find_by(id: thursday_plan.dinner)
+    return thursday_meals
+  end
+
+  def thursday_nutrition
+    thursday_plan.nutritional_summary
+  end
+
   def friday_plan
     DailyMealPlan.find_by(id: friday)
   end
 
+  def friday_meals
+    friday_meals = {}
+    friday_meals[:breakfast] = Meal.find_by(id: friday_plan.breakfast)
+    friday_meals[:lunch] = Meal.find_by(id: friday_plan.lunch)
+    friday_meals[:dinner] = Meal.find_by(id: friday_plan.dinner)
+    return friday_meals
+  end
+
+  def friday_nutrition
+    friday_plan.nutritional_summary
+  end
+
   def saturday_plan
     DailyMealPlan.find_by(id: saturday)
+  end
+
+  def saturday_meals
+    saturday_meals = {}
+    saturday_meals[:breakfast] = Meal.find_by(id: saturday_plan.breakfast)
+    saturday_meals[:lunch] = Meal.find_by(id: saturday_plan.lunch)
+    saturday_meals[:dinner] = Meal.find_by(id: saturday_plan.dinner)
+    return saturday_meals
+  end
+
+  def saturday_nutrition
+    saturday_plan.nutritional_summary
   end
 
   def meals
