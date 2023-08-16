@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 
   # Ingredients
   get "/ingredients" => "ingredients#index"
-  get "/ingredients/:id" => "ingredients#show"
   post "/ingredients" => "ingredients#create"
   patch "/ingredients/:id" => "ingredients#update"
   delete "/ingredients/:id" => "ingredients#destroy"
@@ -19,8 +18,6 @@ Rails.application.routes.draw do
   delete "/meals/:id" => "meals#destroy"
 
   # MealIngredients
-  get "/meal_ingredients" => "meal_ingredients#index"
-  get "/meal_ingredients/:id" => "meal_ingredients#show"
   post "/meal_ingredients" => "meal_ingredients#create"
   patch "/meal_ingredients/:id" => "meal_ingredients#update"
   delete "/meal_ingredients/:id" => "meal_ingredients#destroy"

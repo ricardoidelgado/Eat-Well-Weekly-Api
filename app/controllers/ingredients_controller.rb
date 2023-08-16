@@ -6,11 +6,6 @@ class IngredientsController < ApplicationController
     render :index
   end
 
-  def show
-    @ingredient = Ingredient.find_by(id: params[:id])
-    render :show
-  end
-
   def create
     @ingredient = Ingredient.create(
       name: params[:name],

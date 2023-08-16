@@ -1,14 +1,4 @@
 class MealIngredientsController < ApplicationController
-  def index
-    @meal_ingredients = MealIngredient.all
-    render :index
-  end
-
-  def show
-    @meal_ingredient = MealIngredient.find_by(id: params[:id])
-    render :show
-  end
-
   def create
     @meal_ingredient = MealIngredient.create(
       meal_id: params[:meal_id],
