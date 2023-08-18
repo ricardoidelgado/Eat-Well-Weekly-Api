@@ -6,7 +6,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   # end
 
   test "create" do
-    post "/users.json", params: { first_name: "Test", last_name: "Test", email: "test@test.com", profile_picture: "image.jpeg", password: "password", password_confirmation: "password" }
+    post "/users.json", params: { first_name: "Test", last_name: "Test", email: "test@test.com", password: "password", password_confirmation: "password" }
     post "/sessions.json", params: { email: "test@test.com", password: "password" }
     assert_response 201
 

@@ -1,5 +1,5 @@
 User.create!([
-  { first_name: "Test", last_name: "Testerson", email: "test@email.com", profile_picture: "https://images.unsplash.com/photo-1598790006245-77d0b5bd48a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8c3RvY2slMjBwaG90b3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60", password_digest: "$2a$12$aJh1MRorijh1Dg/h64IHquzwLPsq4tt4arW0VpsEpF8tUXInhVcSO" },
+  { first_name: "Test", last_name: "Testerson", email: "test@email.com", password_digest: "$2a$12$aJh1MRorijh1Dg/h64IHquzwLPsq4tt4arW0VpsEpF8tUXInhVcSO" },
 ])
 Ingredient.create!([
   { name: "1/4 Pound Burger", picture: "https://images.unsplash.com/photo-1587652252980-51fae498d182?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGF0dHl8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60", calories: 300, fat: 10, sodium: 200, carbs: 5, protein: 10, sugar: 25, cholesterol: 50, user_id: 1 },

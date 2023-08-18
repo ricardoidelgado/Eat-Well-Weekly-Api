@@ -2,7 +2,7 @@ require "test_helper"
 
 class IngredientsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = User.create(first_name: "Test", last_name: "Testerson", profile_picture: "image.jpeg", email: "test@test.com", password: "password")
+    @user = User.create(first_name: "Test", last_name: "Testerson", email: "test@test.com", password: "password")
     post "/sessions.json", params: { email: "test@test.com", password: "password" }
     data = JSON.parse(response.body)
     @jwt = data["jwt"]

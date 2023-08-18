@@ -10,7 +10,6 @@ class UsersController < ApplicationController
       first_name: params[:first_name],
       last_name: params[:last_name],
       email: params[:email],
-      profile_picture: params[:profile_picture],
       password: params[:password],
       password_confirmation: params[:password_confirmation],
     )
