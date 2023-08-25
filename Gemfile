@@ -81,3 +81,6 @@ gem "seed_dump"
 # For text/email functionality
 gem "twilio-ruby", "~> 6.2.0"
 gem 'pony', '~> 1.11'
+
+# For environment variables on Windows
+gem 'figaro'

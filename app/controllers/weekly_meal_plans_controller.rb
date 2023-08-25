@@ -73,6 +73,11 @@ class WeeklyMealPlansController < ApplicationController
     grocery_list_summary.each do |hash|
       output_message += "\n" + "#{hash[:item]}: #{hash[:quantity]}"
     end
+
+    pp "------------------------"
+    pp ENV["PROJECT_EMAIL"]
+
+
     Pony.mail({
       :to => current_user.email,
       :from => ENV["PROJECT_EMAIL"],
