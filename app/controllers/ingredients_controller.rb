@@ -2,7 +2,7 @@ class IngredientsController < ApplicationController
   before_action :authenticate_user
 
   def index
-    @ingredients = Ingredient.all
+    @ingredients = current_user.ingredients
     render :index
   end
 
