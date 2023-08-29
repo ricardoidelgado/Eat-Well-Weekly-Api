@@ -2,7 +2,7 @@ class WeeklyMealPlansController < ApplicationController
   before_action :authenticate_user
 
   def index
-    @weekly_meal_plans = WeeklyMealPlan.all
+    @weekly_meal_plans = current_user.weekly_meal_plans
     render :index
   end
 
