@@ -76,7 +76,7 @@ class IngredientsController < ApplicationController
 
     if response.code == "200"
       result = JSON.parse(response.body)
-      render json: {name: result[0]["name"], calories: result[0]["calories"], fat: result[0]["fat_total_g"], sodium: result[0]["sodium_mg"], carbs: result[0]["carbohydrates_total_g"], protein: result[0]["protein_g"], sugar: result[0]["sugar_g"], cholesterol: result[0]["cholesterol_mg"] }
+      render json: {name: result[0]["name"].capitalize(), calories: result[0]["calories"], fat: result[0]["fat_total_g"], sodium: result[0]["sodium_mg"], carbs: result[0]["carbohydrates_total_g"], protein: result[0]["protein_g"], sugar: result[0]["sugar_g"], cholesterol: result[0]["cholesterol_mg"] }
     else
       puts "Error: " + response.body
     end
