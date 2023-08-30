@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post "/ingredients" => "ingredients#create"
   patch "/ingredients/:id" => "ingredients#update"
   delete "/ingredients/:id" => "ingredients#destroy"
-  get "/ingredients_api" => "ingredients#api"
+  post "/ingredients_api" => "ingredients#api"
 
   # Meals
   get "/meals" => "meals#index"
