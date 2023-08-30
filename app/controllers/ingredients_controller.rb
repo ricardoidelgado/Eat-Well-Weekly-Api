@@ -60,4 +60,25 @@ class IngredientsController < ApplicationController
       render json: { errors: "Only the user that created this ingredient can delete this ingredient" }, status: :unprocessable_entity
     end
   end
+
+  def api
+    query = params[:query]
+    url = URI.parse("https://api.api-ninjas.com/v1/nutrition?query=" + query)
+    api_key = ENV["API_KEY"]
+
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true # Use SSL/TLS for secure connection
+
+    request = Net::HTTP::Get.new(url)
+    request["X-Api-Key"] = api_key
+
+    response = http.request(request)
+
+    if response.code == "200"
+      result = JSON.parse(response.body)
+      render json: {name: result[0]["name"], calories: result[0]["calories"], fat: result[0]["fat_total_g"], sodium: result[0]["sodium_mg"], carbs: result[0]["carbohydrates_total_g"], protein: result[0]["protein_g"], sugar: result[0]["sugar_g"], cholesterol: result[0]["cholesterol_mg"] }
+    else
+      puts "Error: " + response.body
+    end
+  end
 end

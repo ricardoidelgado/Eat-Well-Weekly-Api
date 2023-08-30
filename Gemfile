@@ -84,3 +84,7 @@ gem 'pony', '~> 1.11'
 
 # For environment variables on Windows
 gem 'figaro'
+
+# For food API
+gem "net-http"
+gem "json"
