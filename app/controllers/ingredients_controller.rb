@@ -10,6 +10,7 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.create(
       name: params[:name],
       picture: params[:picture],
+      serving_size: params[:serving_size],
       calories: params[:calories],
       fat: params[:fat],
       sodium: params[:sodium],
@@ -32,6 +33,7 @@ class IngredientsController < ApplicationController
     @ingredient.update(
       name: params[:name] || @ingredient.name,
       picture: params[:picture] || @ingredient.picture,
+      serving_size: params[:serving_size] || ingredient.serving_size,
       calories: params[:calories] || @ingredient.calories,
       fat: params[:fat] || @ingredient.fat,
       sodium: params[:sodium] || @ingredient.sodium,
@@ -76,7 +78,7 @@ class IngredientsController < ApplicationController
 
     if response.code == "200"
       result = JSON.parse(response.body)
-      render json: {name: result[0]["name"].capitalize(), calories: result[0]["calories"], fat: result[0]["fat_total_g"], sodium: result[0]["sodium_mg"], carbs: result[0]["carbohydrates_total_g"], protein: result[0]["protein_g"], sugar: result[0]["sugar_g"], cholesterol: result[0]["cholesterol_mg"] }
+      render json: {name: result[0]["name"].capitalize(), serving_size: result[0]["serving_size_g"], calories: result[0]["calories"], fat: result[0]["fat_total_g"], sodium: result[0]["sodium_mg"], carbs: result[0]["carbohydrates_total_g"], protein: result[0]["protein_g"], sugar: result[0]["sugar_g"], cholesterol: result[0]["cholesterol_mg"] }
     else
       puts "Error: " + response.body
     end

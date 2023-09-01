@@ -1,6 +1,7 @@
 json.id ingredient.id
 json.name ingredient.name
 json.picture ingredient.picture
+json.serving_size ingredient.serving_size
 json.calories ingredient.calories
 json.fat ingredient.fat
 json.sodium ingredient.sodium

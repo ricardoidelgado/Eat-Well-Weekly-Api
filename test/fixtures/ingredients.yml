@@ -11,6 +11,7 @@ one:
   sugar: 1
   cholesterol: 1
   user_id: one
+  serving_size: 1
 
 two:
   name: MyString
@@ -23,3 +24,4 @@ two:
   sugar: 1
   cholesterol: 1
   user_id: two
+  serving_size: 1
