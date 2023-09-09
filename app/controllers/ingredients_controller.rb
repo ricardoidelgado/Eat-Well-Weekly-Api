@@ -1,8 +1,8 @@
 class IngredientsController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user, except: [:index, :show]
 
   def index
-    @ingredients = current_user.ingredients
+    @ingredients = Ingredient.all
     render :index
   end
 

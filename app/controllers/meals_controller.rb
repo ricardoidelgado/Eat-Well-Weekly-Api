@@ -1,8 +1,8 @@
 class MealsController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user, except: [:index, :show]
 
   def index
-    @meals = current_user.meals
+    @meals = Meal.all
     render :index
   end
 
@@ -26,15 +26,23 @@ class MealsController < ApplicationController
       name: params[:name] || @meal.name,
       picture: params[:picture] || @meal.picture,
     )
-    render :show
+    if @meal.valid? && @meal.user_id == current_user.id
+      render :show
+    else
+      render json: { errors: @meal.errors.full_messages }, status: :unprocessable_entity 
+    end
   end
 
   def destroy
     @meal = Meal.find_by(id: params[:id])
-    @meal.destroy
-    @meal.get_meal_ingredients.each do |meal_ingredient|
-      meal_ingredient.destroy
+    if @meal.user_id == current_user.id
+      @meal.destroy
+      @meal.get_meal_ingredients.each do |meal_ingredient|
+        meal_ingredient.destroy
+      end
+      render json: { message: "Meal destroyed successfully and all meal ingredient relationships destroyed successfully" }
+    else
+      render json: { errors: "Only the user that created this meal can delete this meal"}, status: :unprocessable_entity
     end
-    render json: { message: "Meal destroyed successfully" }
   end
 end
